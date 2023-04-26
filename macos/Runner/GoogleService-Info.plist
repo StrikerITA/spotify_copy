@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>121784530712-jt2q508h2hjd8f3qq9hc1kr1iq9d77qc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.121784530712-jt2q508h2hjd8f3qq9hc1kr1iq9d77qc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDu84HCzHv_gT3BlE7yuC_q8O8u960oGFA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>121784530712</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.spotifyCopy</string>
+	<key>PROJECT_ID</key>
+	<string>spotify-copy-03</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spotify-copy-03.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:121784530712:ios:6ddfa158d113cec864906d</string>
+</dict>
+</plist>
