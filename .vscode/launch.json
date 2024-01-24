@@ -5,12 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "spotify_copy",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "spotify_copy (profile mode)",
+            "name": "profile mode",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
@@ -22,7 +17,7 @@
             "flutterMode": "debug"
         },
         {
-            "name": "spotify_copy (release mode)",
+            "name": "release mode",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
