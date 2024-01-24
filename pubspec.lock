@@ -119,7 +119,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_lints
       sha256: e2a421b7e59244faef694ba7b30562e489c2b489866e505074eb005cd7060db7
