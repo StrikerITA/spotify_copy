@@ -6,3 +6,4 @@ const bgColor = Colors.black;
 const textColor = Colors.white;
 const borderColor2 = Color.fromARGB(255, 33, 150, 243);
 const borderColor = Color.fromARGB(100, 33, 149, 243);
+const songs_txtstyle = TextStyle(color: textColor);

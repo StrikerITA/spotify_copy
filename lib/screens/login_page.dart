@@ -1,11 +1,11 @@
 // ignore_for_file: empty_catches, unused_catch_clause
-
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_copy/screens/registration_page.dart';
 import 'package:spotify_copy/services/auth.dart';
 import 'package:spotify_copy/utils/colors.dart';
 import 'package:spotify_copy/components/CustomTextField.dart';
+import 'package:email_validator/email_validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,11 +18,10 @@ class _LoginPageState extends State<LoginPage> {
   var _emailCtrl = TextEditingController();
   var _passCtrl = TextEditingController();
   bool isLogin = true;
+  bool _obscureText = true;
 
   Future<void> signIn() async {
-    try {
-      Auth().signIn(email: _emailCtrl.text, password: _passCtrl.text);
-    } on FirebaseAuthException catch (error) {}
+    Auth().signIn(context, email: _emailCtrl.text, password: _passCtrl.text);
   }
 
   @override
@@ -41,7 +40,46 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool obscureText = false;
+
+    CupertinoAlertDialog passError = CupertinoAlertDialog(
+      title: const Text("Incorrect credentials!"),
+      content: const Text(
+        "If you lost the password try to reset it or click ok to try another password",
+      ),
+      //azioni del bottone
+      actions: [
+        CupertinoDialogAction(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        CupertinoDialogAction(
+          child: const Text('Reset password'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            //add launchURL with reset password url
+          },
+        ),
+      ],
+    );
+
+    //no blank space
+    CupertinoAlertDialog noBlank = CupertinoAlertDialog(
+      title: const Text("Insert your credentials correctly"),
+      content: const Text(
+        "Enter your email and password in the marked fields",
+      ),
+      //azioni del bottone
+      actions: [
+        CupertinoDialogAction(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -66,11 +104,11 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: size.height * 0.03),
               //Email
               CustomTextField(
+                obscureText: false,
                 txtCtrl: _emailCtrl,
-                suffixButton: IconButton(
-                  onPressed: () {},
-                  padding: const EdgeInsets.only(right: 10),
-                  icon: const Icon(Icons.email_outlined, color: Colors.white60),
+                prefixIcon: const Icon(
+                  Icons.email_outlined,
+                  color: Colors.white60,
                 ),
                 height: 0.08,
                 width: 0.8,
@@ -79,21 +117,20 @@ class _LoginPageState extends State<LoginPage> {
               //Password
               CustomTextField(
                 txtCtrl: _passCtrl,
-                obscureText: obscureText,
+                obscureText: _obscureText,
+                //TODO: need to fix the OBS button
+                prefixIcon: const Icon(
+                  Icons.lock,
+                  color: Colors.white60,
+                ),
                 suffixButton: IconButton(
                   onPressed: () {
-                    if (obscureText == true) {
-                      setState(() {
-                        obscureText = false;
-                      });
-                    } else {
-                      setState(() {
-                        obscureText = true;
-                      });
-                    }
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
                   },
                   padding: const EdgeInsets.only(right: 10),
-                  icon: const Icon(Icons.remove_red_eye, color: Colors.white60),
+                  icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white60),
                 ),
                 height: 0.08,
                 width: 0.8,
@@ -104,8 +141,17 @@ class _LoginPageState extends State<LoginPage> {
                 width: size.width * 0.7,
                 height: size.height * 0.07,
                 child: ElevatedButton(
-                  onPressed: () {
-                    signIn();
+                  onPressed: () async {
+                    if (_passCtrl.text.isNotEmpty && EmailValidator.validate(_emailCtrl.text) == true) {
+                      signIn();
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return noBlank;
+                        },
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
