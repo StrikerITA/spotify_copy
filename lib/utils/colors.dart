@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 final primaryColor = Colors.green[700];
 const secondaryColor = Color(0xFF2A2D3E);
+final listColor = Colors.grey[900];
 const bgColor = Colors.black;
 const textColor = Colors.white;
 const borderColor2 = Color.fromARGB(255, 33, 150, 243);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spotify_copy/services/auth.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/login_page.dart';
 import 'screens/home_page.dart';
 
@@ -25,9 +24,9 @@ class MyMain extends StatelessWidget {
         stream: Auth().authStateChanges,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomePage();
+            return const HomePage();
           } else {
-            return LoginPage();
+            return const LoginPage();
           }
         },
       ),
